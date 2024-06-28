@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Grid from "./components/Grid";
 import { getPokemonCardInfo } from "./utils";
-import Score from "./components/Score";
+import Header from "./components/Header";
 
 const NUM_OF_CARDS = 15;
 
@@ -40,8 +40,8 @@ function App() {
   };
   return (
     <>
-      <Score score={score} bestScore={bestScore} />
-      <Grid onCellClick={handleClick} infos={cardImgUrls} />;
+      <Header score={score} bestScore={bestScore} />
+      <Grid onCellClick={handleClick} infos={cardImgUrls} />
     </>
   );
 }

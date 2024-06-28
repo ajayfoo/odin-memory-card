@@ -1,0 +1,21 @@
+.game-help {
+  position: relative;
+}
+
+.game-help > p:first-child {
+  cursor: help;
+}
+
+.game-help > p:last-child {
+  position: absolute;
+  top: 1.5em;
+  background-color: aliceblue;
+  padding: 0.5em;
+  visibility: hidden;
+  border-radius: 3px;
+}
+
+.game-help:hover > p:last-child {
+  visibility: visible;
+  width: min(20em, 30vw);
+}
