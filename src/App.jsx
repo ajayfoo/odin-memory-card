@@ -1,25 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Grid from "./components/Grid";
+import { getPokemonCardInfo } from "./utils";
+
+const NUM_OF_CARDS = 15;
 
 function App() {
+  const [pokemonInfos, setPokemonInfos] = useState([]);
   useEffect(() => {
-    const printGifUrl = async () => {
-      const pokeApiRes = await fetch("https://pokeapi.co/api/v2/pokemon/1");
-      const pokeJson = await pokeApiRes.json();
-      const response = await fetch(
-        "https://api.giphy.com/v1/gifs/search?q=" +
-          pokeJson.name +
-          "&rating=pg-13" +
-          "&api_key=" +
-          import.meta.env.VITE_GIPHY_API_KEY
-      );
-      const json = await response.json();
-      if (json.data.length === 2) return;
-      console.log(pokeJson.name);
-      console.log(json.data[1].url);
+    const populatePokemonInfos = async () => {
+      const temp = [];
+      for (let i = 1; i <= NUM_OF_CARDS; ++i) {
+        const info = await getPokemonCardInfo(i);
+        temp.push(info);
+      }
+      setPokemonInfos(temp);
     };
-    printGifUrl();
-  });
-  return <div>Pokemon</div>;
+    populatePokemonInfos();
+  }, []);
+  return <Grid infos={pokemonInfos} />;
 }
 
 export default App;
