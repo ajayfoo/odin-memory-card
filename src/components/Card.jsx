@@ -1,10 +1,13 @@
 import "./Card.css";
 
-export default function Card({ gifUrl, title, onClick }) {
+export default function Card({ imgUrl, onClick }) {
   return (
-    <div onClick={onClick} className="card">
-      <img width={"250px"} height={"250px"} src={gifUrl} alt={title} />
-      <p>{title}</p>
-    </div>
+    <img
+      className="card"
+      onClick={onClick}
+      width={"250px"}
+      height={"250px"}
+      src={imgUrl}
+    />
   );
 }
